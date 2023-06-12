@@ -1,8 +1,7 @@
 use proconio::input;
 
 fn main() {
-    // 二分探索を用いない実装
-    // TLEになる想定
+    // 二分探索を用いた実装
     input! {
         n: usize,
         k: usize,
@@ -28,5 +27,5 @@ fn main() {
             low = mid + 1;
         }
     }
-    println!("{}", low)
+    println!("{}", low);
 }
