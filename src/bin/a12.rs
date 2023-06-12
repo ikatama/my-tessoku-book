@@ -1,23 +1,31 @@
 use proconio::input;
 
 fn main() {
-    // 二分探索を用いない実装
-    // TLEになる想定
+    // 二分探索を用いた実装
     input! {
         n: usize,
         k: usize,
         a: [usize; n],
     }
 
-    let mut sec = 0;
+    // k枚未満印刷する秒数
+    let mut low = 0;
+    // k枚以上印刷する秒数
+    let mut high = 100_000_000;
 
-    let mut printed = 0;
-    while printed < k {
-        sec += 1;
-        printed = 0;
-        for printer in &a {
-            printed += sec / printer;
+    while low < high {
+        let mid = (low + high) / 2;
+
+        let mut printed = 0;
+        for e in &a {
+            printed += mid / e;
+        }
+
+        if printed >= k {
+            high = mid;
+        } else {
+            low = mid + 1;
         }
     }
-    println!("{}", sec)
+    println!("{}", low);
 }
